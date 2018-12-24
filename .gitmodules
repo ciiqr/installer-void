@@ -1,0 +1,3 @@
+[submodule "mklive"]
+	path = mklive
+	url = git@github.com:void-linux/void-mklive.git
