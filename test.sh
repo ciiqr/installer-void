@@ -2,6 +2,7 @@
 
 # TODO: add param checks/usage notes
 # ie. ./test.sh "$(basename $(realpath ./))" mklive/installer-void-x86_64-2018-12-24.iso
+# sudo ./generate.sh | less -p copy_include_directory && ./test.sh "$(basename $(realpath ./))" mklive/installer-void-x86_64-$(ymd).iso
 
 # set -x
 
@@ -44,6 +45,7 @@ echo '==> vm started'
 trap ' ' INT
 echo 'Press Ctrl-C to continue'
 cat
+echo
 
 # Shutdown
 VBoxManage controlvm "$NAME" poweroff >/dev/null 2>&1
