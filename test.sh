@@ -10,6 +10,8 @@
 readonly NAME="$1"
 readonly ISO_PATH="$2"
 
+# TODO: create vdi in a temp location
+
 # Create a 32GB “dynamic” disk.
 VBoxManage createhd --filename "${NAME}.vdi" --size 32768 >/dev/null 2>&1
 
