@@ -90,7 +90,6 @@ required_directories "$CONFIG_DIR" "$CONFIG_PRIVATE_DIR"
 sudo mkdir "$BUILD_DIRECTORY/data"
 sudo rsync -ra --delete "$CONFIG_DIR/" "$BUILD_DIRECTORY/data/config"
 sudo rsync -ra --delete "$CONFIG_PRIVATE_DIR/" "$BUILD_DIRECTORY/data/config-private"
-# TODO: consider supporting inserting password when building
 sudo cp -f "$AUTOINSTALL_FILE" "$BUILD_DIRECTORY/data/autoinstall.cfg"
 
 # prepare mklive
