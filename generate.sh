@@ -103,7 +103,6 @@ mklive \
     -k "$KEYMAP" \
     -l "$LOCALE" \
     -i "$INITRAMFS_COMPRESSION" \
-    -I "INCLUDE_DIRECTORY" \
     -p "$PACKAGES" \
     -I "$BUILD_DIRECTORY" \
     -c "$XBPS_CACHEDIR" \
