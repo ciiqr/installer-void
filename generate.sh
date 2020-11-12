@@ -72,14 +72,18 @@ readonly OUTPUT_FILE="${IMAGE_NAME}-${ARCH}-${DATE}.iso"
 # TODO: If I want a live cd: live.autologin=true live.user=william live.shell=/bin/bash
 readonly BOOT_CMDLINE="auto autourl=file:///run/initramfs/live/boot/data/autoinstall.cfg"
 
+# Additional repos
+readonly XBPS_REPOSITORY="https://alpha.de.repo.voidlinux.org/current/nonfree"
+
 readonly GRUB_PACKAGES="grub-i386-efi grub-x86_64-efi"
 readonly BASE_PACKAGES="dialog cryptsetup lvm2 mdadm $GRUB_PACKAGES"
 readonly X11_PACKAGES="$BASE_PACKAGES xorg-minimal xorg-input-drivers xorg-video-drivers setxkbmap xauth font-misc-misc terminus-font dejavu-fonts-ttf alsa-plugins-pulseaudio intel-ucode"
 readonly PACKAGES="$X11_PACKAGES " # TODO: any additional packages
 
-# TODO: make params for these?
-readonly CONFIG_DIR="/config"
-readonly CONFIG_PRIVATE_DIR="/config-private"
+# TODO: make params for these? or auto-detect with salt-call commands
+readonly USER_HOME="$(eval echo ~${SUDO_USER})"
+readonly CONFIG_DIR="${USER_HOME}/Projects/config"
+readonly CONFIG_PRIVATE_DIR="${USER_HOME}/Projects/config-private"
 readonly AUTOINSTALL_FILE="${PROJECT_DIRECTORY}/autoinstall.cfg"
 
 # check
@@ -108,7 +112,8 @@ mklive \
     -c "$XBPS_CACHEDIR" \
     -o "$OUTPUT_FILE" \
     -C "$BOOT_CMDLINE" \
-    -T "$IMAGE_NAME"
+    -T "$IMAGE_NAME" \
+    -r "$XBPS_REPOSITORY"
 
 # TODO: parameterize
 "$TEST_BIN" "$IMAGE_NAME" "${MKLIVE_DIRECTORY}/${OUTPUT_FILE}"
